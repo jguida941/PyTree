@@ -17,28 +17,31 @@ Binary trees aren't just data structures - they're beautiful patterns of organiz
 ### Tree Operations - Before & After
 
 #### Main Interface - Complete Tree
-![Complete BST](screenshots/complete_tree.png)
+<img width="931" alt="complete_tree" src="https://github.com/user-attachments/assets/8b0e127f-8e37-4fe0-ae14-d9af0c803d97" />
+
 *Fully populated balanced BST showing clear node relationships and complete in-order traversal*
 
 #### Insertion Process
-![Before Insertion](screenshots/before_insertion.png)
+<img width="923" alt="before_insertion" src="https://github.com/user-attachments/assets/2681040b-1bee-4c36-9628-49911e2be155" />
 *Tree ready for new value insertion with input field active*
 
-![After Insertion](screenshots/after_insertion.png)
+<img width="946" alt="after_insertion" src="https://github.com/user-attachments/assets/96466d5d-2177-418e-be67-64f8e6768f28" />
 *Tree grows organically with new node placement and updated traversal sequence*
 
 #### Deletion Process
-![Before Deletion](screenshots/before_deletion.png)
+<img width="927" alt="before_deletion" src="https://github.com/user-attachments/assets/143b9c24-3d79-4617-afc9-a2443b760fd9" />
+
 *About to delete a node from the tree structure*
 
-![After Deletion](screenshots/after_deletion.png)  
+<img width="923" alt="after_deletion" src="https://github.com/user-attachments/assets/75af97d8-9c38-485c-9609-b83e6dd0f58d" />
 *Tree automatically restructures after node deletion, maintaining BST properties*
 
 #### Search Operations with Feedback
-![Search Result - Value Found](screenshots/search_result.png)
+
+<img width="949" alt="search_result" src="https://github.com/user-attachments/assets/2d6b6a43-d520-4fa8-a6e9-2b8a93dbe048" />
 *Search operation with popup confirmation showing "Value 90 was found in the tree"*
 
-![Search Result - Detailed Info](screenshots/search_result_more_info.png)
+<img width="951" alt="search_result_more_info" src="https://github.com/user-attachments/assets/0c043918-ef4f-449e-861b-e127b687a737" />
 *Enhanced search feedback with detailed path information and algorithm explanation*
 
 ## Features
