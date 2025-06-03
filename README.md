@@ -1,6 +1,6 @@
 # PyTree
 
-**PyTree** is a modern educational tool for visualizing and understanding Binary Search Trees (BSTs) using PySide6/PyQt6.
+**PyTree** is a modern educational tool for visualizing and understanding Binary Search Trees (BSTs) using PyQt6.
 
 *Developed by Justin Paul Guida - Southern New Hampshire University*
 
@@ -12,58 +12,165 @@ I developed PyTree to help myself and others truly **see the patterns** in binar
 
 Binary trees aren't just data structures - they're beautiful patterns of organization that mirror how we naturally categorize and search through information. This visualizer exists because sometimes the best way to understand something is to watch it happen, step by step, until the patterns become second nature.
 
+## Screenshots
+
+### Tree Operations - Before & After
+
+#### Main Interface - Complete Tree
+![Complete BST](screenshots/complete_tree.png)
+*Fully populated balanced BST showing clear node relationships and complete in-order traversal*
+
+#### Insertion Process
+![Before Insertion](screenshots/before_insertion.png)
+*Tree ready for new value insertion with input field active*
+
+![After Insertion](screenshots/after_insertion.png)
+*Tree grows organically with new node placement and updated traversal sequence*
+
+#### Deletion Process
+![Before Deletion](screenshots/before_deletion.png)
+*About to delete a node from the tree structure*
+
+![After Deletion](screenshots/after_deletion.png)  
+*Tree automatically restructures after node deletion, maintaining BST properties*
+
+#### Search Operations with Feedback
+![Search Result - Value Found](screenshots/search_result.png)
+*Search operation with popup confirmation showing "Value 90 was found in the tree"*
+
+![Search Result - Detailed Info](screenshots/search_result_more_info.png)
+*Enhanced search feedback with detailed path information and algorithm explanation*
+
 ## Features
 
 ### Core Functionality
-- **Real-time BST Visualization** - Watch your tree structure update as you insert nodes
+- **Real-time BST Visualization** - Watch your tree structure update as you insert and delete nodes
 - **Interactive Node Operations** - Insert, search, and delete nodes with immediate visual feedback
-- **Step-by-Step Animation** - Visualize algorithms executing with detailed explanations
-- **Multiple Traversal Methods** - See in-order, pre-order, and post-order traversals
+- **In-Order Traversal Display** - See the sorted sequence automatically update in the sidebar
+- **Clean Tree Layout** - Professional node positioning and connection lines
+- **Tree Restructuring** - Automatic tree updates when nodes are removed
 - **Search Path Highlighting** - Visual feedback showing the path taken during searches
+- **Interactive Popup Messages** - Clear confirmation dialogs for search results and operations
 
 ### Educational Tools
-- **Code Display** - View the actual implementation code for each operation
-- **Detailed Explanations** - Step-by-step breakdown of what's happening during operations
-- **Animation Controls** - Play, pause, and step through operations at your own pace
-- **Node Insights** - Analyze tree properties like depth, subtree size, and balance
-- **Balance Warnings** - Get notified when your tree becomes unbalanced
+- **Pattern Recognition** - See how different operations affect tree structure
+- **Visual Learning** - Understand algorithms through interactive demonstration
+- **Real-time Updates** - Watch traversal sequences change with each operation
+- **Intuitive Interface** - Simple input fields for all tree operations
 
 ### Technical Features
-- **Modern PySide6 Interface** - Clean, responsive desktop application
-- **NetworkX Integration** - Alternative graph-based tree visualization
-- **Multiple Color Modes** - Colorize nodes by depth or subtree size
-- **Theme Support** - Dark mode, high contrast, and custom themes
-- **Export Capabilities** - Save tree data and analysis results
+- **Modern PyQt6 Interface** - Clean, responsive desktop application
+- **Custom Tree Rendering** - Hand-crafted visualization using QPainter
+- **Efficient Layout Algorithm** - Automatic node positioning for optimal viewing
+- **Cross-platform Compatibility** - Runs on Windows, macOS, and Linux
 
 ## Quick Start
 
-### Prerequisites
-```bash
-pip install PySide6 matplotlib networkx numpy
-```
+### Installation & Setup
 
-### Running PyTree
-
-#### GUI Application (Full Featured)
 ```bash
-python GUI.py
-```
+# Clone the repository
+git clone https://github.com/jguida941/Pytree
+cd Pytree
 
-#### Simple Visualizer (Basic Interface)
-```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
 python simple_binary_tree_ex.py
 ```
 
-#### Minimal Example (Command Line Demo)
+### macOS Terminal Fix
+
+If you get a Qt platform plugin error on macOS:
+```
+qt.qpa.plugin: Could not find the Qt platform plugin "cocoa"
+```
+
+**Quick Fix (run before your app):**
 ```bash
-python main.py
+export QT_PLUGIN_PATH=$(python -c "import PyQt6.QtCore; import os; print(os.path.join(os.path.dirname(PyQt6.QtCore.__file__), 'plugins'))")
+python simple_binary_tree_ex.py
+```
+
+**Permanent Fix (add to ~/.zshrc):**
+```bash
+echo 'export QT_PLUGIN_PATH=$(python -c "import PyQt6.QtCore as qc; import os; print(os.path.join(os.path.dirname(qc.__file__), \"plugins\"))")' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### Local Development Setup
+
+If you're working with the project locally:
+
+```bash
+# Navigate to your project directory
+cd /Users/jguida941/Desktop/Githubthencandelete
+
+# Install dependencies (if not already done)
+pip install -r requirements.txt
+
+# Run the application (with Qt fix if needed)
+export QT_PLUGIN_PATH=$(python -c "import PyQt6.QtCore; import os; print(os.path.join(os.path.dirname(PyQt6.QtCore.__file__), 'plugins'))")
+python simple_binary_tree_ex.py
+```
+
+### Prerequisites
+
+#### Option 1: Install from Requirements File (Recommended)
+```bash
+pip install -r requirements.txt
+```
+
+#### Option 2: Manual Installation
+```bash
+# Core dependencies
+pip install PyQt6==6.9.0 matplotlib==3.10.3 numpy==2.2.6 networkx==3.4.2
+
+# Optional: PySide6 for advanced GUI features
+pip install PySide6==6.9.1
+```
+
+#### Minimal Installation (Basic Functionality)
+```bash
+# For simple_binary_tree_ex.py only
+pip install PyQt6
+```
+
+> **Note:** The application works with PyQt6. PySide6 is included for compatibility with the advanced GUI.py module.
+
+### Running PyTree
+
+#### Option 1: PyCharm (Recommended for Development)
+```bash
+# Clone the repository
+git clone https://github.com/jguida941/Pytree
+
+# Open in PyCharm
+# 1. File → Open → Select the Pytree folder
+# 2. PyCharm will automatically detect requirements.txt
+# 3. Click "Install requirements" when prompted
+# 4. Right-click on simple_binary_tree_ex.py → Run
+```
+*PyCharm automatically handles Qt environment setup - no additional configuration needed!*
+
+#### Option 2: Command Line
+```bash
+python simple_binary_tree_ex.py
+```
+*Complete GUI with tree visualization, search path highlighting, and interactive features*
+
+#### Option 3: Alternative Advanced Module (Optional)
+```bash
+# GUI.py contains additional BSTVisualizer class (requires PySide6)
+python -c "from GUI import BSTVisualizer; from PySide6.QtWidgets import QApplication; import sys; app = QApplication(sys.argv); viz = BSTVisualizer(); viz.show(); sys.exit(app.exec())"
 ```
 
 ## Usage Examples
 
 ### Building a Tree Programmatically
 ```python
-from GUI import BinarySearchTree
+from simple_binary_tree_ex import BinarySearchTree
 
 # Create a new BST
 bst = BinarySearchTree()
@@ -74,19 +181,19 @@ for value in values:
     bst.insert(value)
 
 # Perform operations
-result, steps = bst.inorder_traversal()
+result = bst.inorder_traversal()
 print("In-order traversal:", result)
 
-found, search_steps = bst.search(60)
+found = bst.search(60)
 print("Search for 60:", "Found" if found else "Not found")
 ```
 
 ### Interactive GUI Features
-1. **Insert Operations** - Use the spin box to add values and watch the tree grow
-2. **Search Visualization** - Search for values and see the path highlighted
-3. **Animation Controls** - Step through operations to understand the algorithm
-4. **Code Learning** - View the implementation code alongside the visualization
-5. **Tree Analysis** - Get insights about node properties and tree balance
+1. **Insert Operations** - Enter values and watch the tree grow organically
+2. **Search Operations** - Find values with visual path highlighting  
+3. **Delete Operations** - Remove nodes and see automatic tree restructuring
+4. **Real-time Traversal** - In-order sequence updates instantly with each operation
+5. **Clear Tree** - Reset to start fresh with new tree structures
 
 ## The Power of Visual Learning
 
@@ -107,11 +214,21 @@ Visual patterns stick in memory differently than abstract concepts. When you've 
 
 ```
 PyTree/
-├── GUI.py                     # Main PySide6 application with full features
-├── simple_binary_tree_ex.py   # Simplified PyQt6 visualizer
-├── main.py                    # Basic tree graph visualization
+├── simple_binary_tree_ex.py   # Main application (run this!)
+├── GUI.py                     # Advanced BSTVisualizer class (importable module)
+├── main.py                    # NetworkX graph demo
+├── requirements.txt           # Python dependencies
 ├── LICENSE.txt                # Project license
-└── README.md                  # This file
+├── README.md                  # This file
+├── .gitignore                 # Git ignore rules
+└── screenshots/               # Application screenshots
+    ├── complete_tree.png      # Full tree interface
+    ├── before_insertion.png   # Pre-insertion state
+    ├── after_insertion.png    # Post-insertion growth
+    ├── before_deletion.png    # Pre-deletion state
+    ├── after_deletion.png     # Post-deletion restructuring
+    ├── search_result.png      # Search success with popup
+    └── search_result_more_info.png  # Detailed search feedback
 ```
 
 ## Key Classes
@@ -119,65 +236,77 @@ PyTree/
 ### TreeNode
 Represents individual nodes in the binary search tree with position tracking for visualization.
 
+```python
+class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+```
+
 ### BinarySearchTree
-Core BST implementation with step-by-step operation tracking for educational purposes.
+Core BST implementation with educational-focused methods.
 
-### BSTVisualizer (GUI.py)
-Full-featured PySide6 application with:
-- Tabbed interface (Tree View, Insights, Settings)
-- Animation controls and speed adjustment
-- Code display and explanations
-- Theme support and customization
+```python
+class BinarySearchTree:
+    def insert(self, key)      # Add new node
+    def search(self, key)      # Find node with path tracking
+    def delete(self, key)      # Remove node with restructuring
+    def inorder_traversal()    # Return sorted sequence
+```
 
-### TreeVisualizer (simple_binary_tree_ex.py)
-Simplified interface focusing on basic BST operations with visual feedback.
+### TreeVisualizer
+Main GUI application with interactive tree visualization.
+
+```python
+class TreeVisualizer(QWidget):
+    # Handles all user interactions and visual updates
+    # Custom painting with QPainter for tree rendering
+    # Real-time updates for all tree operations
+```
 
 ## Educational Applications
 
 - **Data Structures Courses** - Visual aid for teaching BST concepts and operations
-- **Algorithm Analysis** - Compare performance of different tree operations
+- **Algorithm Analysis** - See the efficiency of different tree operations
 - **Self-Study** - Interactive tool for understanding tree algorithms
 - **Programming Practice** - Visualize your BST implementations
 - **Pattern Recognition** - Develop intuition for tree structures and behaviors
 
-## Implementation Features
+## Implementation Highlights
 
-### Animation System
-- Step-by-step operation breakdown
-- Configurable animation speed
-- Play/pause/step controls
-- Visual highlighting of current operations
+### Visual Design
+- **Custom QPainter Rendering** - Hand-crafted tree visualization
+- **Dynamic Layout** - Automatic node positioning based on tree structure
+- **Color-coded Feedback** - Visual indicators for search paths and operations
+- **Responsive Interface** - Clean, intuitive controls for all operations
 
-### Tree Analysis
-- Real-time balance checking
-- Node depth calculation
-- Subtree size analysis
-- Path tracking and visualization
+### Tree Operations
+- **Insertion** - Maintains BST property while updating visualization
+- **Deletion** - Handles all cases (leaf, one child, two children) with visual feedback
+- **Search** - Shows path traversal with highlighted nodes
+- **Traversal** - Real-time in-order sequence display
 
-### Visualization Modes
-- Traditional tree layout
-- NetworkX graph representation
-- Color-coded nodes (by depth or subtree size)
-- Search path highlighting
+### Educational Focus
+- **Immediate Feedback** - Every operation provides instant visual confirmation
+- **Pattern Visualization** - See how different operations affect tree structure
+- **Interactive Learning** - Learn by doing rather than just reading
 
 ## Learning Philosophy
 
 This tool embodies the belief that:
 - **Visualization accelerates understanding** - Seeing patterns makes them memorable
 - **Interactivity deepens learning** - Doing beats reading about doing
-- **Step-by-step revelation** - Complex algorithms become simple when broken into steps
-- **Multiple perspectives help** - Code + visualization + explanation = deeper understanding
+- **Immediate feedback helps** - See results instantly to understand cause and effect
+- **Simple interfaces work best** - Focus on the concepts, not complex controls
 
-## Contributing
+## Technical Notes
 
-Contributions are welcome! Areas for improvement:
-- Additional tree operations (deletion, rotation)
-- More traversal algorithms
-- Performance metrics and complexity analysis
-- Enhanced animation effects
-- Additional export formats
-
-The goal is always to make the patterns more visible and the learning more intuitive.
+- Built with PyQt6 for cross-platform compatibility
+- Uses custom QPainter rendering for precise tree visualization
+- Implements efficient tree layout algorithms for optimal display
+- Designed with clean code architecture for educational reference
+- Minimal dependencies for easy setup and distribution
 
 ## License
 
@@ -189,13 +318,6 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 *Southern New Hampshire University*  
 *Computer Science, Junior (Class of 2026)*  
 *GitHub: https://github.com/jguida941*
-
-## Technical Notes
-
-- Built with PySide6/PyQt6 for cross-platform compatibility
-- Uses matplotlib for tree rendering and NetworkX for graph layouts
-- Implements educational-focused step tracking for all operations
-- Designed with extensibility in mind for additional tree algorithms
 
 ---
 
