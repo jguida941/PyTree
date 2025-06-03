@@ -20,7 +20,7 @@ I developed PyTree to help myself and others truly **see the patterns** in binar
 
 Binary trees aren't just data structures - they're beautiful patterns of organization that mirror how we naturally categorize and search through information. This visualizer exists because sometimes the best way to understand something is to watch it happen, step by step, until the patterns become second nature.
 
-## 📸 Screenshots
+## Screenshots
 
 <div align="center">
 
@@ -90,7 +90,7 @@ Binary trees aren't just data structures - they're beautiful patterns of organiz
 - **Efficient Layout Algorithm** - Automatic node positioning for optimal viewing
 - **Cross-platform Compatibility** - Runs on Windows, macOS, and Linux
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Installation & Setup
 
@@ -215,7 +215,7 @@ print("Search for 60:", "Found" if found else "Not found")
 4. **Real-time Traversal** - In-order sequence updates instantly with each operation
 5. **Clear Tree** - Reset to start fresh with new tree structures
 
-## 🧠 The Power of Visual Learning
+##  The Power of Visual Learning
 
 ### Pattern Recognition
 - **Tree Shape Patterns** - See how different insertion orders create different tree structures
@@ -227,7 +227,7 @@ print("Search for 60:", "Found" if found else "Not found")
 - **Comparison Logic** - Watch the simple "less than/greater than" decisions that drive everything
 - **Path Visualization** - Understand that every tree operation is really about finding the right path
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 PyTree/
@@ -241,7 +241,7 @@ PyTree/
 └── screenshots/               # Application screenshots
 ```
 
-## 🔍 Key Classes
+## Key Classes
 
 <details>
 <summary><strong>TreeNode</strong></summary>
@@ -292,7 +292,7 @@ class TreeVisualizer(QWidget):
 - **Programming Practice** - Visualize your BST implementations
 - **Pattern Recognition** - Develop intuition for tree structures and behaviors
 
-## 💡 Implementation Highlights
+##  Implementation Highlights
 
 <details>
 <summary><strong>Visual Design</strong></summary>
@@ -320,7 +320,7 @@ class TreeVisualizer(QWidget):
 - **Interactive Learning** - Learn by doing rather than just reading
 </details>
 
-## 📝 Technical Notes
+##  Technical Notes
 
 - Built with PyQt6 for cross-platform compatibility
 - Uses custom QPainter rendering for precise tree visualization
