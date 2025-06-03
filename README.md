@@ -297,7 +297,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## 🚧 Project Status
 
-This is a personal educational project developed for learning purposes at Southern New Hampshire University. The code is publicly available for reference and educational use under the MIT License.
+This is a personal educational project developed for learning purposes. The code is publicly available for reference and educational use under the MIT License.
 
 **Repository Policy:** This is maintained as a solo educational project. While I appreciate interest in the project, I'm not accepting pull requests, issues, or external contributions at this time.
 
