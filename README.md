@@ -4,6 +4,8 @@
 
 *Developed by Justin Paul Guida - Southern New Hampshire University*
 
+> **Note:** This is a personal learning project created for educational purposes and portfolio demonstration. While the code is publicly available for reference and learning, this repository is maintained as a solo project and is not accepting external contributions.
+
 ## Why I Built This
 
 I developed PyTree to help myself and others truly **see the patterns** in binary trees. There's something powerful about watching algorithms unfold visually that reading code alone can't provide. When you can see how a search traverses left and right, how insertions find their perfect spot, and how the tree's structure emerges organically, the abstract concepts become concrete and intuitive.
@@ -201,10 +203,12 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## Project Status
 
-This is a personal educational project developed for learning purposes at Southern New Hampshire University. While the code is publicly available for reference and educational use under the MIT License, this repository is not accepting contributions, pull requests, or modifications.
+This is a personal educational project developed for learning purposes at Southern New Hampshire University. The code is publicly available for reference and educational use under the MIT License.
+
+**Repository Policy:** This is maintained as a solo educational project. While I appreciate interest in the project, I'm not accepting pull requests, issues, or external contributions at this time.
 
 The project serves as:
-- A demonstration of BST visualization techniques
+- A demonstration of BST visualization techniques  
 - An educational resource for other computer science students
 - A portfolio piece showcasing GUI development and algorithm visualization
 
