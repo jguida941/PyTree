@@ -16,7 +16,7 @@ I developed PyTree to help myself and others truly **see the patterns** in binar
 
 Binary trees aren't just data structures - they're beautiful patterns of organization that mirror how we naturally categorize and search through information. This visualizer exists because sometimes the best way to understand something is to watch it happen, step by step, until the patterns become second nature.
 
-##  Screenshots
+## 📸 Screenshots
 
 ### Main Interface - Complete Tree
 ![Complete Tree](https://github.com/user-attachments/assets/8b0e127f-8e37-4fe0-ae14-d9af0c803d97)
@@ -44,7 +44,7 @@ Binary trees aren't just data structures - they're beautiful patterns of organiz
 ![Search Result with Details](https://github.com/user-attachments/assets/0c043918-ef4f-449e-861b-e127b687a737)
 *Enhanced search feedback with path details*
 
-##  Features
+## ✨ Features
 
 ### Core Functionality
 - **Real-time BST Visualization** - Watch your tree structure update as you insert and delete nodes
@@ -67,7 +67,7 @@ Binary trees aren't just data structures - they're beautiful patterns of organiz
 - **Efficient Layout Algorithm** - Automatic node positioning for optimal viewing
 - **Cross-platform Compatibility** - Runs on Windows, macOS, and Linux
 
-##  Quick Start
+## 🚀 Quick Start
 
 ### Installation & Setup
 
@@ -194,7 +194,7 @@ print("Search for 60:", "Found" if found else "Not found")
 - **Comparison Logic** - Watch the simple "less than/greater than" decisions that drive everything
 - **Path Visualization** - Understand that every tree operation is really about finding the right path
 
-##  Project Structure
+## 📁 Project Structure
 
 ```
 PyTree/
@@ -208,7 +208,7 @@ PyTree/
 └── screenshots/               # Application screenshots
 ```
 
-##  Key Classes
+## 🔍 Key Classes
 
 ### TreeNode
 
@@ -272,7 +272,7 @@ class TreeVisualizer(QWidget):
 - **Pattern Visualization** - See how different operations affect tree structure
 - **Interactive Learning** - Learn by doing rather than just reading
 
-## Technical Notes
+## 📝 Technical Notes
 
 - Built with PyQt6 for cross-platform compatibility
 - Uses custom QPainter rendering for precise tree visualization
@@ -280,11 +280,11 @@ class TreeVisualizer(QWidget):
 - Designed with clean code architecture for educational reference
 - Minimal dependencies for easy setup and distribution
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
-## Author
+## 👤 Author
 
 **Justin Paul Guida**  
 *Southern New Hampshire University*  
@@ -295,7 +295,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 **Educational BST visualization made simple and interactive - because the best way to understand patterns is to see them in action.**
 
-## Project Status
+## 🚧 Project Status
 
 This is a personal educational project developed for learning purposes at Southern New Hampshire University. The code is publicly available for reference and educational use under the MIT License.
 
