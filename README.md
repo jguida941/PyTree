@@ -1,47 +1,50 @@
 # PyTree
 
-**PyTree** is a modern educational tool for visualizing and understanding Binary Search Trees (BSTs) using PyQt6.
+**A Modern Educational Tool for Visualizing Binary Search Trees**
 
-*Developed by Justin Paul Guida - Southern New Hampshire University*
+*Developed by Justin Paul Guida | Southern New Hampshire University*
+
+## Overview
+
+**PyTree** is an interactive visualization tool that helps students and developers understand Binary Search Tree (BST) operations through visual learning. Built with PyQt6, it provides a clean, professional interface for exploring tree algorithms in real-time.
 
 > **Note:** This is a personal learning project created for educational purposes and portfolio demonstration. While the code is publicly available for reference and learning, this repository is maintained as a solo project and is not accepting external contributions.
 
-## Why I Built This
+## 🌟 Why I Built This
 
 I developed PyTree to help myself and others truly **see the patterns** in binary trees. There's something powerful about watching algorithms unfold visually that reading code alone can't provide. When you can see how a search traverses left and right, how insertions find their perfect spot, and how the tree's structure emerges organically, the abstract concepts become concrete and intuitive.
 
 Binary trees aren't just data structures - they're beautiful patterns of organization that mirror how we naturally categorize and search through information. This visualizer exists because sometimes the best way to understand something is to watch it happen, step by step, until the patterns become second nature.
 
-## Screenshots
+##  Screenshots
 
-### Tree Operations - Before & After
+### Main Interface - Complete Tree
+![Complete Tree](https://github.com/user-attachments/assets/8b0e127f-8e37-4fe0-ae14-d9af0c803d97)
 
-#### Main Interface - Complete Tree
-![Complete BST](screenshots/complete_tree.png)
 *Fully populated balanced BST showing clear node relationships and complete in-order traversal*
 
-#### Insertion Process
-![Before Insertion](screenshots/before_insertion.png)
-*Tree ready for new value insertion with input field active*
+### Insertion Process
+![Before Insertion](https://github.com/user-attachments/assets/2681040b-1bee-4c36-9628-49911e2be155)
+*Before: Tree ready for new value insertion*
 
-![After Insertion](screenshots/after_insertion.png)
-*Tree grows organically with new node placement and updated traversal sequence*
+![After Insertion](https://github.com/user-attachments/assets/96466d5d-2177-418e-be67-64f8e6768f28)
+*After: Tree grows with new node and updated traversal*
 
-#### Deletion Process
-![Before Deletion](screenshots/before_deletion.png)
-*About to delete a node from the tree structure*
+### Deletion Process
+![Before Deletion](https://github.com/user-attachments/assets/143b9c24-3d79-4617-afc9-a2443b760fd9)
+*Before: About to delete a node from the tree*
 
-![After Deletion](screenshots/after_deletion.png)  
-*Tree automatically restructures after node deletion, maintaining BST properties*
+![After Deletion](https://github.com/user-attachments/assets/75af97d8-9c38-485c-9609-b83e6dd0f58d)
+*After: Tree automatically restructures*
 
-#### Search Operations with Feedback
-![Search Result - Value Found](screenshots/search_result.png)
-*Search operation with popup confirmation showing "Value 90 was found in the tree"*
+### Search Operations with Feedback
+![Search Result](https://github.com/user-attachments/assets/2d6b6a43-d520-4fa8-a6e9-2b8a93dbe048)
+*Search confirmation popup*
 
-![Search Result - Detailed Info](screenshots/search_result_more_info.png)
-*Enhanced search feedback with detailed path information and algorithm explanation*
+![Search Result with Details](https://github.com/user-attachments/assets/0c043918-ef4f-449e-861b-e127b687a737)
+*Enhanced search feedback with path details*
 
-## Features
+##  Features
 
 ### Core Functionality
 - **Real-time BST Visualization** - Watch your tree structure update as you insert and delete nodes
@@ -64,7 +67,7 @@ Binary trees aren't just data structures - they're beautiful patterns of organiz
 - **Efficient Layout Algorithm** - Automatic node positioning for optimal viewing
 - **Cross-platform Compatibility** - Runs on Windows, macOS, and Linux
 
-## Quick Start
+##  Quick Start
 
 ### Installation & Setup
 
@@ -97,22 +100,6 @@ python simple_binary_tree_ex.py
 ```bash
 echo 'export QT_PLUGIN_PATH=$(python -c "import PyQt6.QtCore as qc; import os; print(os.path.join(os.path.dirname(qc.__file__), \"plugins\"))")' >> ~/.zshrc
 source ~/.zshrc
-```
-
-### Local Development Setup
-
-If you're working with the project locally:
-
-```bash
-# Navigate to your project directory
-cd /Users/jguida941/Desktop/Githubthencandelete
-
-# Install dependencies (if not already done)
-pip install -r requirements.txt
-
-# Run the application (with Qt fix if needed)
-export QT_PLUGIN_PATH=$(python -c "import PyQt6.QtCore; import os; print(os.path.join(os.path.dirname(PyQt6.QtCore.__file__), 'plugins'))")
-python simple_binary_tree_ex.py
 ```
 
 ### Prerequisites
@@ -166,7 +153,7 @@ python simple_binary_tree_ex.py
 python -c "from GUI import BSTVisualizer; from PySide6.QtWidgets import QApplication; import sys; app = QApplication(sys.argv); viz = BSTVisualizer(); viz.show(); sys.exit(app.exec())"
 ```
 
-## Usage Examples
+## 💻 Usage Examples
 
 ### Building a Tree Programmatically
 ```python
@@ -195,7 +182,7 @@ print("Search for 60:", "Found" if found else "Not found")
 4. **Real-time Traversal** - In-order sequence updates instantly with each operation
 5. **Clear Tree** - Reset to start fresh with new tree structures
 
-## The Power of Visual Learning
+## 🧠 The Power of Visual Learning
 
 ### Pattern Recognition
 - **Tree Shape Patterns** - See how different insertion orders create different tree structures
@@ -207,10 +194,7 @@ print("Search for 60:", "Found" if found else "Not found")
 - **Comparison Logic** - Watch the simple "less than/greater than" decisions that drive everything
 - **Path Visualization** - Understand that every tree operation is really about finding the right path
 
-### Memory and Understanding
-Visual patterns stick in memory differently than abstract concepts. When you've seen a search animation dozens of times, you internalize not just what happens, but why it works and how to think about similar problems.
-
-## Project Structure
+##  Project Structure
 
 ```
 PyTree/
@@ -222,18 +206,12 @@ PyTree/
 ├── README.md                  # This file
 ├── .gitignore                 # Git ignore rules
 └── screenshots/               # Application screenshots
-    ├── complete_tree.png      # Full tree interface
-    ├── before_insertion.png   # Pre-insertion state
-    ├── after_insertion.png    # Post-insertion growth
-    ├── before_deletion.png    # Pre-deletion state
-    ├── after_deletion.png     # Post-deletion restructuring
-    ├── search_result.png      # Search success with popup
-    └── search_result_more_info.png  # Detailed search feedback
 ```
 
-## Key Classes
+##  Key Classes
 
 ### TreeNode
+
 Represents individual nodes in the binary search tree with position tracking for visualization.
 
 ```python
@@ -245,6 +223,7 @@ class TreeNode:
 ```
 
 ### BinarySearchTree
+
 Core BST implementation with educational-focused methods.
 
 ```python
@@ -256,6 +235,7 @@ class BinarySearchTree:
 ```
 
 ### TreeVisualizer
+
 Main GUI application with interactive tree visualization.
 
 ```python
@@ -265,7 +245,7 @@ class TreeVisualizer(QWidget):
     # Real-time updates for all tree operations
 ```
 
-## Educational Applications
+## 🎓 Educational Applications
 
 - **Data Structures Courses** - Visual aid for teaching BST concepts and operations
 - **Algorithm Analysis** - See the efficiency of different tree operations
@@ -273,7 +253,7 @@ class TreeVisualizer(QWidget):
 - **Programming Practice** - Visualize your BST implementations
 - **Pattern Recognition** - Develop intuition for tree structures and behaviors
 
-## Implementation Highlights
+## 💡 Implementation Highlights
 
 ### Visual Design
 - **Custom QPainter Rendering** - Hand-crafted tree visualization
@@ -292,14 +272,6 @@ class TreeVisualizer(QWidget):
 - **Pattern Visualization** - See how different operations affect tree structure
 - **Interactive Learning** - Learn by doing rather than just reading
 
-## Learning Philosophy
-
-This tool embodies the belief that:
-- **Visualization accelerates understanding** - Seeing patterns makes them memorable
-- **Interactivity deepens learning** - Doing beats reading about doing
-- **Immediate feedback helps** - See results instantly to understand cause and effect
-- **Simple interfaces work best** - Focus on the concepts, not complex controls
-
 ## Technical Notes
 
 - Built with PyQt6 for cross-platform compatibility
@@ -317,7 +289,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 **Justin Paul Guida**  
 *Southern New Hampshire University*  
 *Computer Science, Junior (Class of 2026)*  
-*GitHub: https://github.com/jguida941*
+*GitHub: [https://github.com/jguida941](https://github.com/jguida941)*
 
 ---
 
