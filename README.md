@@ -6,7 +6,7 @@
 
 ## Overview
 
-**PyTree** is an interactive visualization tool that helps students and developers understand Binary Search Tree (BST) operations through visual learning. Built with PyQt6, it provides a clean, professional interface for exploring tree algorithms in real-time.
+**PyTree is an interactive visualization tool that helps students and developers understand Binary Search Tree (BST) operations through visual learning. Built with PyQt6 and optionally enhanced with PySide6, it provides a clean, professional interface for exploring tree algorithms in real-time.**
 
 > **Note:** This is a personal learning project created for educational purposes and portfolio demonstration. While the code is publicly available for reference and learning, this repository is maintained as a solo project and is not accepting external contributions.
 
@@ -16,33 +16,7 @@ I developed PyTree to help myself and others truly **see the patterns** in binar
 
 Binary trees aren't just data structures - they're beautiful patterns of organization that mirror how we naturally categorize and search through information. This visualizer exists because sometimes the best way to understand something is to watch it happen, step by step, until the patterns become second nature.
 
-## 📸 Screenshots
 
-### Main Interface - Complete Tree
-![Complete Tree](https://github.com/user-attachments/assets/8b0e127f-8e37-4fe0-ae14-d9af0c803d97)
-
-*Fully populated balanced BST showing clear node relationships and complete in-order traversal*
-
-### Insertion Process
-![Before Insertion](https://github.com/user-attachments/assets/2681040b-1bee-4c36-9628-49911e2be155)
-*Before: Tree ready for new value insertion*
-
-![After Insertion](https://github.com/user-attachments/assets/96466d5d-2177-418e-be67-64f8e6768f28)
-*After: Tree grows with new node and updated traversal*
-
-### Deletion Process
-![Before Deletion](https://github.com/user-attachments/assets/143b9c24-3d79-4617-afc9-a2443b760fd9)
-*Before: About to delete a node from the tree*
-
-![After Deletion](https://github.com/user-attachments/assets/75af97d8-9c38-485c-9609-b83e6dd0f58d)
-*After: Tree automatically restructures*
-
-### Search Operations with Feedback
-![Search Result](https://github.com/user-attachments/assets/2d6b6a43-d520-4fa8-a6e9-2b8a93dbe048)
-*Search confirmation popup*
-
-![Search Result with Details](https://github.com/user-attachments/assets/0c043918-ef4f-449e-861b-e127b687a737)
-*Enhanced search feedback with path details*
 
 ## ✨ Features
 

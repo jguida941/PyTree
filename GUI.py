@@ -3,13 +3,15 @@ import math
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QLabel, QPushButton, QLineEdit,
                                QGroupBox, QSpinBox, QTextEdit, QSplitter,
-                               QComboBox, QMessageBox, QTabWidget, QScrollArea, QSlider)
+                               QComboBox, QMessageBox, QTabWidget, QScrollArea, QSlider, QCheckBox,
+                               QDialog)
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont, QColor
 
 import numpy as np
 
 import matplotlib
+
 matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -18,8 +20,6 @@ from matplotlib.figure import Figure
 import networkx as nx
 
 import matplotlib
-
-
 
 
 # --- Tree Node with Depth/Subtree Support ---
@@ -44,9 +44,9 @@ class TreeNode:
         if root == self:
             return d
         if self.key < root.key and root.left:
-            return self.depth(root.left, d+1)
+            return self.depth(root.left, d + 1)
         if self.key > root.key and root.right:
-            return self.depth(root.right, d+1)
+            return self.depth(root.right, d + 1)
         return None  # Not found
 
     def count_subtree_nodes(self):
@@ -344,7 +344,6 @@ class BinarySearchTree:
             self._assign_positions_rec(node.right, node.x, right, next_level, height)
 
 
-
 # --- MatplotlibCanvas with Colorization Support ---
 class MatplotlibCanvas(FigureCanvas):
     """Matplotlib canvas for drawing the tree."""
@@ -432,7 +431,7 @@ class MatplotlibCanvas(FigureCanvas):
                 size = node.count_subtree_nodes()
                 max_size = self.tree.root.count_subtree_nodes() if self.tree.root else 1
                 cmap = plt.get_cmap("YlGnBu")
-                color = cmap((size-1) / (max_size-1)) if max_size > 1 else 'skyblue'
+                color = cmap((size - 1) / (max_size - 1)) if max_size > 1 else 'skyblue'
             else:
                 color = 'skyblue'
 
@@ -536,7 +535,6 @@ class BSTVisualizer(QMainWindow):
 
     def setup_ui(self):
         """Set up the user interface."""
-        from PySide6.QtWidgets import QCheckBox
         central_widget = QWidget()
         main_layout = QVBoxLayout(central_widget)
 
@@ -813,6 +811,7 @@ class BSTVisualizer(QMainWindow):
         """)
 
     def show_tree_graph(self):
+        """Show NetworkX graph visualization of the tree."""
         if not self.bst or not self.bst.root:
             QMessageBox.warning(self, "Empty Tree", "The tree is empty. Please insert nodes first.")
             return
@@ -847,9 +846,9 @@ class BSTVisualizer(QMainWindow):
         )
         plt.title("Binary Search Tree Visualization")
         plt.show()
+
     def change_theme(self, theme_name: str):
         """Switch between color themes for the UI."""
-        # Reset to default first
         if theme_name == "Default":
             self.setStyleSheet("")
         elif theme_name == "Dark":
@@ -862,7 +861,6 @@ class BSTVisualizer(QMainWindow):
                 QTabWidget::pane { border: 1px solid #444; }
             """)
         elif theme_name == "Solarized":
-            # Solarized dark
             self.setStyleSheet("""
                 QWidget { background: #002b36; color: #839496; }
                 QGroupBox { border: 1px solid #586e75; margin-top: 8px; }
@@ -880,15 +878,14 @@ class BSTVisualizer(QMainWindow):
                 QLabel { color: #FFF; }
                 QTabWidget::pane { border: 2px solid #FFF; }
             """)
-        # Redraw canvas if necessary
         self.canvas.update_figure()
 
     def on_color_mode_changed(self, mode):
+        """Handle color mode change."""
         self.canvas.set_color_mode(mode)
 
     def update_animation_speed(self):
         """Update the animation speed based on slider value."""
-        # Use the animation speed spinbox (not the slider on left panel)
         speed_value = self.anim_speed_spin.value()
         self.animation_speed = 2000 // speed_value
         if self.is_animating:
@@ -898,7 +895,6 @@ class BSTVisualizer(QMainWindow):
     def log(self, message):
         """Add a message to the log."""
         self.log_text.append(message)
-        # Scroll to bottom
         scrollbar = self.log_text.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
 
@@ -970,20 +966,13 @@ def _inorder_traversal_rec(self, node):
         """Handle insert button click."""
         value = self.insert_input.value()
         self.log(f"Inserting value: {value}")
-        # Perform the insert operation and get steps
         self.current_steps = self.bst.insert(value)
-        # Update the code view
         self.update_code_view("insert")
-        # Reset animation state
         self.current_step_index = 0
         self.prev_button.setEnabled(False)
         self.next_button.setEnabled(len(self.current_steps) > 0)
         self.play_button.setEnabled(len(self.current_steps) > 0)
-        # Update the visualization
         self.canvas.set_tree(self.bst)
-        # Visualize the BST using NetworkX
-        visualize_bst_with_networkx(self.bst)
-        # Show the first step explanation
         if self.current_steps:
             self.show_step(0)
         self.update_insights()
@@ -993,17 +982,13 @@ def _inorder_traversal_rec(self, node):
         """Handle search button click."""
         value = self.search_input.value()
         self.log(f"Searching for value: {value}")
-        # Perform the search operation and get steps
         found, steps = self.bst.search(value)
         self.current_steps = steps
-        # Update the code view
         self.update_code_view("search")
-        # Reset animation state
         self.current_step_index = 0
         self.prev_button.setEnabled(False)
         self.next_button.setEnabled(len(self.current_steps) > 0)
         self.play_button.setEnabled(len(self.current_steps) > 0)
-        # Show the first step explanation
         if self.current_steps:
             self.show_step(0)
         self.update_insights()
@@ -1012,17 +997,13 @@ def _inorder_traversal_rec(self, node):
     def on_traverse(self):
         """Handle traverse button click."""
         self.log("Starting in-order traversal")
-        # Perform the traversal operation and get steps
         result, steps = self.bst.inorder_traversal()
         self.current_steps = steps
-        # Update the code view
         self.update_code_view("traversal")
-        # Reset animation state
         self.current_step_index = 0
         self.prev_button.setEnabled(False)
         self.next_button.setEnabled(len(self.current_steps) > 0)
         self.play_button.setEnabled(len(self.current_steps) > 0)
-        # Show the first step explanation
         if self.current_steps:
             self.show_step(0)
         self.update_insights()
@@ -1033,23 +1014,12 @@ def _inorder_traversal_rec(self, node):
         if not self.current_steps or step_index < 0 or step_index >= len(self.current_steps):
             return
 
-        # Get the current step
         step = self.current_steps[step_index]
-
-        # Reset previous highlights
         self.canvas.reset_highlights()
-
-        # Update explanation based on step action
         self.explanation_text.setHtml(self.get_explanation_for_step(step))
-
-        # Highlight relevant nodes/edges based on action
         self.highlight_for_step(step)
-
-        # Update buttons
         self.prev_button.setEnabled(step_index > 0)
         self.next_button.setEnabled(step_index < len(self.current_steps) - 1)
-
-        # Update log
         if 'message' in step:
             self.log(step['message'])
 
@@ -1058,6 +1028,257 @@ def _inorder_traversal_rec(self, node):
         if self.current_step_index > 0:
             self.current_step_index -= 1
             self.show_step(self.current_step_index)
+
+    def next_step(self):
+        """Step forward through the animation."""
+        if self.current_step_index < len(self.current_steps) - 1:
+            self.current_step_index += 1
+            self.show_step(self.current_step_index)
+
+    def toggle_animation(self):
+        """Toggle play/pause for animation."""
+        if self.is_animating:
+            self.animation_timer.stop()
+            self.is_animating = False
+            self.play_button.setText("Play")
+        else:
+            if self.current_steps and self.current_step_index < len(self.current_steps) - 1:
+                self.animation_timer.start(self.animation_speed)
+                self.is_animating = True
+                self.play_button.setText("Pause")
+
+    def animation_step(self):
+        """Handle automatic animation stepping."""
+        if self.current_step_index < len(self.current_steps) - 1:
+            self.current_step_index += 1
+            self.show_step(self.current_step_index)
+        else:
+            self.animation_timer.stop()
+            self.is_animating = False
+            self.play_button.setText("Play")
+
+    def highlight_for_step(self, step):
+        """Highlight nodes/edges based on the current step."""
+        action = step.get('action', '')
+
+        if action in ['visit', 'visit_inorder']:
+            node = step.get('node')
+            if node:
+                self.canvas.highlight_node(node, 'yellow')
+        elif action == 'found':
+            node = step.get('node')
+            if node:
+                self.canvas.highlight_node(node, 'lightgreen')
+        elif action == 'insert':
+            node = step.get('node')
+            if node:
+                self.canvas.highlight_node(node, 'lightblue')
+
+    def load_sample_tree(self):
+        """Load a sample tree for demonstration."""
+        self.bst = BinarySearchTree()
+        sample_values = [50, 30, 70, 20, 40, 60, 80, 10, 25, 35, 45, 55, 65, 75, 85]
+
+        for value in sample_values:
+            self.bst.insert(value)
+
+        self.canvas.set_tree(self.bst)
+        self.log("Sample tree loaded with values: " + ", ".join(map(str, sample_values)))
+        self.update_insights()
+        self.check_balance_and_warn()
+
+    def reset_tree(self):
+        """Reset the tree to empty state."""
+        self.bst = BinarySearchTree()
+        self.canvas.set_tree(self.bst)
+        self.current_steps = []
+        self.current_step_index = 0
+
+        self.prev_button.setEnabled(False)
+        self.next_button.setEnabled(False)
+        self.play_button.setEnabled(False)
+
+        if self.is_animating:
+            self.animation_timer.stop()
+            self.is_animating = False
+            self.play_button.setText("Play")
+
+        self.explanation_text.setHtml("""
+        <h3>Tree Reset</h3>
+        <p>The tree has been cleared. You can now:</p>
+        <ul>
+            <li>Insert new values</li>
+            <li>Load a sample tree</li>
+            <li>Explore different tree structures</li>
+        </ul>
+        """)
+
+        self.log("Tree has been reset to empty state")
+        self.update_insights()
+        self.check_balance_and_warn()
+
+    def update_insights(self):
+        """Update the insights panel with tree statistics."""
+        if not self.bst or not self.bst.root:
+            self.insight_text.setPlainText("Tree is empty - no insights available.")
+            return
+
+        def count_nodes(node):
+            if not node:
+                return 0
+            return 1 + count_nodes(node.left) + count_nodes(node.right)
+
+        def count_leaves(node):
+            if not node:
+                return 0
+            if not node.left and not node.right:
+                return 1
+            return count_leaves(node.left) + count_leaves(node.right)
+
+        def find_min_max(node):
+            if not node:
+                return None, None
+
+            min_node = node
+            while min_node.left:
+                min_node = min_node.left
+
+            max_node = node
+            while max_node.right:
+                max_node = max_node.right
+
+            return min_node.key, max_node.key
+
+        total_nodes = count_nodes(self.bst.root)
+        total_leaves = count_leaves(self.bst.root)
+        height = self.bst.get_height()
+        min_val, max_val = find_min_max(self.bst.root)
+        traversal_result = self.bst.inorder_traversal()[0] if self.bst.root else []
+
+        insights = f"""Tree Statistics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 Basic Information:
+   • Total Nodes: {total_nodes}
+   • Leaf Nodes: {total_leaves}
+   • Internal Nodes: {total_nodes - total_leaves}
+   • Tree Height: {height}
+   • Root Value: {self.bst.root.key}
+
+📈 Value Range:
+   • Minimum Value: {min_val}
+   • Maximum Value: {max_val}
+   • Value Range: {max_val - min_val if min_val and max_val else 0}
+
+🔄 Traversal:
+   • In-order: {traversal_result}
+   • Is Sorted: {traversal_result == sorted(traversal_result)}
+
+⚖️ Balance Analysis:
+   • Perfect Binary Tree: {total_nodes == (2 ** height - 1)}
+   • Max Possible Height: {height}
+   • Min Possible Height: {max(1, int(math.log2(total_nodes)) + 1) if total_nodes > 0 else 0}
+
+🎯 Tree Quality:
+   • Fill Ratio: {(total_nodes / (2 ** height - 1) * 100):.1f}% of perfect tree
+   • Leaf Ratio: {(total_leaves / total_nodes * 100):.1f}% are leaves
+   • Depth Efficiency: {'Good' if height <= math.log2(total_nodes) + 1 else 'Could be improved'}
+"""
+
+        self.insight_text.setPlainText(insights)
+
+    def check_balance_and_warn(self):
+        """Check if tree is unbalanced and show warning."""
+        if not self.bst or not self.bst.root:
+            self.balance_warning_group.setVisible(False)
+            return
+
+        def calculate_balance_factor(node):
+            if not node:
+                return 0
+
+            left_height = self.bst._get_height_rec(node.left)
+            right_height = self.bst._get_height_rec(node.right)
+
+            return abs(left_height - right_height)
+
+        def is_unbalanced(node):
+            if not node:
+                return False
+
+            if calculate_balance_factor(node) > 1:
+                return True
+
+            return is_unbalanced(node.left) or is_unbalanced(node.right)
+
+        total_nodes = self.bst.root.count_subtree_nodes() if self.bst.root else 0
+        height = self.bst.get_height()
+        optimal_height = max(1, int(math.log2(total_nodes)) + 1) if total_nodes > 0 else 0
+
+        if height > optimal_height + 2 or is_unbalanced(self.bst.root):
+            self.balance_warning_group.setVisible(True)
+            self.balance_warning_label.setText(
+                f"⚠️ Tree is unbalanced!\n"
+                f"Current height: {height}, Optimal: ~{optimal_height}\n"
+                f"Consider rebalancing for better performance."
+            )
+        else:
+            self.balance_warning_group.setVisible(False)
+
+    def export_node_data(self):
+        """Export tree data for analysis."""
+        if not self.bst or not self.bst.root:
+            QMessageBox.information(self, "Export", "Tree is empty - nothing to export.")
+            return
+
+        def collect_node_data(node, depth=0, path="root"):
+            if not node:
+                return []
+
+            data = []
+            node_info = {
+                'value': node.key,
+                'depth': depth,
+                'path': path,
+                'is_leaf': not node.left and not node.right,
+                'has_left_child': node.left is not None,
+                'has_right_child': node.right is not None,
+                'subtree_size': node.count_subtree_nodes()
+            }
+            data.append(node_info)
+
+            if node.left:
+                data.extend(collect_node_data(node.left, depth + 1, f"{path}.left"))
+            if node.right:
+                data.extend(collect_node_data(node.right, depth + 1, f"{path}.right"))
+
+            return data
+
+        node_data = collect_node_data(self.bst.root)
+
+        export_text = "Value,Depth,Path,IsLeaf,HasLeft,HasRight,SubtreeSize\n"
+        for node in node_data:
+            export_text += f"{node['value']},{node['depth']},{node['path']},{node['is_leaf']},{node['has_left_child']},{node['has_right_child']},{node['subtree_size']}\n"
+
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Export Tree Data")
+        dialog.setGeometry(200, 200, 600, 400)
+
+        layout = QVBoxLayout(dialog)
+
+        label = QLabel("Tree data in CSV format (copy to clipboard or save to file):")
+        layout.addWidget(label)
+
+        text_edit = QTextEdit()
+        text_edit.setPlainText(export_text)
+        text_edit.selectAll()
+        layout.addWidget(text_edit)
+
+        close_button = QPushButton("Close")
+        close_button.clicked.connect(dialog.accept)
+        layout.addWidget(close_button)
+
+        dialog.exec()
 
     def get_explanation_for_step(self, step):
         """Generate HTML explanation for a step."""
@@ -1089,7 +1310,6 @@ def _inorder_traversal_rec(self, node):
             value = step.get('value')
             result = step.get('result', '')
             return self._format_comparison_explanation(node, value, result, step.get('path', ''))
-
         elif action == 'insert':
             node = step.get('node')
             parent = step.get('parent')
@@ -1100,7 +1320,6 @@ def _inorder_traversal_rec(self, node):
             <p>This node is now part of the tree and will be visualized accordingly.</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'duplicate':
             return f"""
             <h3>Duplicate Value</h3>
@@ -1108,13 +1327,11 @@ def _inorder_traversal_rec(self, node):
             <p>Binary search trees do not allow duplicate values.</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'start_search':
             return f"""
             <h3>Start Search</h3>
             <p>We are starting a search for the value <b>{step.get('value')}</b> in the tree.</p>
             """
-
         elif action == 'found':
             node = step.get('node')
             return f"""
@@ -1123,14 +1340,12 @@ def _inorder_traversal_rec(self, node):
             <p>Search successful!</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'visit_null':
             return f"""
             <h3>Reached Null Node</h3>
             <p>We reached a null node — the value <b>{step.get('value', '')}</b> was not found on this path.</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'finish_search':
             if step.get('found'):
                 return f"""
@@ -1142,13 +1357,11 @@ def _inorder_traversal_rec(self, node):
                 <h3>Search Complete</h3>
                 <p>The value <b>{step.get('value')}</b> was not found in the tree.</p>
                 """
-
         elif action == 'start_traversal':
             return f"""
             <h3>Traversal Start</h3>
             <p>Beginning in-order traversal (Left → Root → Right).</p>
             """
-
         elif action == 'traverse_left':
             node = step.get('node')
             return f"""
@@ -1156,11 +1369,9 @@ def _inorder_traversal_rec(self, node):
             <p>At node <b>{node.key}</b>. Moving to the left subtree.</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'visit_inorder':
             node = step.get('node')
             return self._format_visit_node_explanation(node, step.get('path', ''))
-
         elif action == 'traverse_right':
             node = step.get('node')
             return f"""
@@ -1168,7 +1379,6 @@ def _inorder_traversal_rec(self, node):
             <p>At node <b>{node.key}</b>. Moving to the right subtree.</p>
             <p><b>Traversal Path:</b> {step.get('path', '')}</p>
             """
-
         elif action == 'finish_traversal':
             result = step.get('result', [])
             return f"""
@@ -1176,7 +1386,6 @@ def _inorder_traversal_rec(self, node):
             <p>The in-order traversal is complete.</p>
             <p><b>Traversal Result:</b> {result}</p>
             """
-
         elif action == 'finish_insert':
             return f"""
             <h3>Insert Complete</h3>
@@ -1185,7 +1394,7 @@ def _inorder_traversal_rec(self, node):
 
     @staticmethod
     def _format_visit_node_explanation(node, path):
-        """Format explanation for visiting a node (for both 'visit' and 'visit_inorder')."""
+        """Format explanation for visiting a node."""
         if node is None:
             return ""
         return f"""
@@ -1209,11 +1418,10 @@ def _inorder_traversal_rec(self, node):
         """
 
 
-    # --- NetworkX BST Visualization Utilities ---
+# --- NetworkX BST Visualization Utilities ---
 def visualize_bst_with_networkx(tree: BinarySearchTree):
-    """
-    Uses NetworkX and Matplotlib to render the BST as a graph.
-    """
+    """Uses NetworkX and Matplotlib to render the BST as a graph."""
+
     def add_edges(graph, node):
         if node.left:
             graph.add_edge(node.key, node.left.key)
@@ -1235,12 +1443,11 @@ def visualize_bst_with_networkx(tree: BinarySearchTree):
     plt.title("Binary Search Tree (NetworkX View)")
     plt.show()
 
+
 def hierarchy_pos(graph, root=None, width=1.0, vert_gap=0.2, _vert_loc=0, _xcenter=0.5):
-    """
-    Recursively positions a tree graph in a hierarchical layout.
-    Source: adapted from Joel's answer at https://stackoverflow.com/a/29597209
-    """
+    """Recursively positions a tree graph in a hierarchical layout."""
     pos = {}
+
     def _hierarchy_pos(g, node, left, right, level=0):
         x = (left + right) / 2
         pos[node] = (x, -level * vert_gap)
@@ -1249,5 +1456,27 @@ def hierarchy_pos(graph, root=None, width=1.0, vert_gap=0.2, _vert_loc=0, _xcent
             width_per_child = (right - left) / len(neighbors)
             for i, child in enumerate(neighbors):
                 _hierarchy_pos(g, child, left + i * width_per_child, left + (i + 1) * width_per_child, level + 1)
+
     _hierarchy_pos(graph, root, 0, width)
     return pos
+
+
+# Entry point for running the PySide6 version directly
+def main():
+    """Main entry point for the PySide6 version."""
+    app = QApplication(sys.argv)
+
+    # Set application properties
+    app.setApplicationName("PyTree")
+    app.setApplicationVersion("1.0")
+    app.setOrganizationName("Southern New Hampshire University")
+    app.setOrganizationDomain("snhu.edu")
+
+    visualizer = BSTVisualizer()
+    visualizer.show()
+
+    sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()
