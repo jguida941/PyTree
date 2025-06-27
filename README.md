@@ -256,7 +256,36 @@ class TreeVisualizer(QWidget):
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+# Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)
+
+**Copyright (c) 2025 Justin Guida**
+
+This work is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License**.
+
+You are free to:
+
+**Share** — copy and redistribute the material in any medium or format  
+**Adapt** — remix, transform, and build upon the material  
+
+Under the following terms:
+
+ **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. Credit must include:
+- Name: *Justin Guida*
+- Year: *2025*
+- GitHub: [https://github.com/jguida941](https://github.com/jguida941)
+
+ **NonCommercial** — You may not use the material for **commercial purposes** without **explicit written permission** from the author.
+
+Additional terms:
+
+- **You may not sell**, rebrand, or redistribute this work for profit.  
+- Educational institutions and students may freely use, adapt, and build upon this work **for non-commercial academic use**, including course materials and presentations.
+- Derivative works must also credit the original author clearly.
+
+---
+
+To view the full license, visit:  
+[https://creativecommons.org/licenses/by-nc/4.0](https://creativecommons.org/licenses/by-nc/4.0)
 
 ## 👤 Author
 
@@ -271,7 +300,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## 🚧 Project Status
 
-This is a personal educational project developed for learning purposes. The code is publicly available for reference and educational use under the MIT License.
+This is a personal educational project developed for learning purposes. For education or personal, no commericial use. 
 
 **Repository Policy:** This is maintained as a solo educational project. While I appreciate interest in the project, I'm not accepting pull requests, issues, or external contributions at this time.
 
