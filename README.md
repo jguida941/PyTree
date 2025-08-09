@@ -1,4 +1,9 @@
 # PyTree
+[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-0EE37B?style=for-the-badge&labelColor=0B1020)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.10%2B-66FFDA?style=for-the-badge&labelColor=0B1020)
+![GUI](https://img.shields.io/badge/GUI-PyQt6-9BE564?style=for-the-badge&labelColor=0B1020)
+![OS](https://img.shields.io/badge/OS-macOS%20%7C%20Linux%20%7C%20Windows-B3B3B3?style=for-the-badge&labelColor=0B1020)
+![Status](https://img.shields.io/badge/Status-Educational-0EE37B?style=for-the-badge&labelColor=0B1020)
 
 **A Modern Educational Tool for Visualizing Binary Search Trees**
 
