@@ -3,7 +3,8 @@
 **A Modern Educational Tool for Visualizing Binary Search Trees**
 
 *Developed by Justin Paul Guida | Southern New Hampshire University*
-**Note version 2 is coming soon much more education and better visuals! When I get time i'll upload!**
+
+**Note: Version 2 is coming soon, more educational and better visuals**
 
 ## Overview
 
