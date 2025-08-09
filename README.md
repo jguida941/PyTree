@@ -134,7 +134,7 @@ python simple_binary_tree_ex.py
 python -c "from GUI import BSTVisualizer; from PySide6.QtWidgets import QApplication; import sys; app = QApplication(sys.argv); viz = BSTVisualizer(); viz.show(); sys.exit(app.exec())"
 ```
 
-## 💻 Usage Examples
+## Usage Examples
 
 ### Building a Tree Programmatically
 ```python
@@ -175,7 +175,7 @@ print("Search for 60:", "Found" if found else "Not found")
 - **Comparison Logic** - Watch the simple "less than/greater than" decisions that drive everything
 - **Path Visualization** - Understand that every tree operation is really about finding the right path
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 PyTree/
